@@ -13,8 +13,8 @@ const transporter = nodemailer.createTransport({
   port: 587, // Default SMTP port
   secure: false, // Use true for 465, false for other ports
   auth: {
-    user: "project@snaarp.com", // Replace with Axigen email
-    pass: "Snaarp@123", // Replace with Axigen password
+    user: "example@mail.com", // Replace with Axigen email
+    pass: "example@mail.com", // Replace with Axigen password
   },
 });
 
@@ -24,7 +24,7 @@ app.post("/api/send", async (req, res) => {
 
   try {
     await transporter.sendMail({
-      from: "hello@snaarp.com", // Sender address
+      from: "example@mail.com", // Sender address
       to, // List of recipients
       subject, // Subject line
       text, // Plain text body
