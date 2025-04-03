@@ -1,81 +1,53 @@
-import React from "react";
-import "./SendMail.css";
-import CloseIcon from "@material-ui/icons/Close";
-import { Button } from "@material-ui/core";
-import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { closeSendMessage } from "../../features/mailSlice";
-import { db } from "../../firebase";
-import firebase from "firebase";
+// filepath: c:\Users\Oluwatobirc\Documents\Gmail-Clone\src\SendMail.js
+import React, { useState } from "react";
+import axios from "axios";
 
 function SendMail() {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
-  const dispatch = useDispatch();
+  const [to, setTo] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
 
-  const onSubmit = (formData) => {
-    console.log(formData);
-    db.collection("emails").add({
-      to: formData.to,
-      subject: formData.subject,
-      message: formData.message,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    });
+  const sendEmail = async (e) => {
+    e.preventDefault();
 
-    dispatch(closeSendMessage());
+    try {
+      const response = await axios.post("http://localhost:5000/api/send", {
+        to,
+        subject,
+        text: message,
+      });
+      alert(response.data); // Show success message
+    } catch (error) {
+      console.error("Error sending email:", error);
+      alert("Failed to send email.");
+    }
   };
 
   return (
-    <div className="sendMail">
-      <div className="sendMail-header">
-        <h3>New Message</h3>
-        <CloseIcon
-          onClick={() => dispatch(closeSendMessage())}
-          className="sendMail-close"
-        />
-      </div>
-
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <div>
+      <h2>Send Email</h2>
+      <form onSubmit={sendEmail}>
         <input
-          name="to"
-          placeholder="To"
           type="email"
-          {...register("to", { required: true })}
+          placeholder="Recipient Email"
+          value={to}
+          onChange={(e) => setTo(e.target.value)}
+          required
         />
-        {errors.to && <p className="sendMail-error">To is Required!</p>}
         <input
-          name="subject"
+          type="text"
           placeholder="Subject"
-          type="text"
-          {...register("subject", { required: true })}
+          value={subject}
+          onChange={(e) => setSubject(e.target.value)}
+          required
         />
-        {errors.subject && (
-          <p className="sendMail-error">Subject is Required!</p>
-        )}
-        <input
-          name="message"
+        <textarea
           placeholder="Message"
-          type="text"
-          className="sendMail-message"
-          {...register("message", { required: true })}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          required
         />
-        {errors.message && (
-          <p className="sendMail-error">Message is Required!</p>
-        )}
-        <div className="sendMail-options">
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            className="sendMail-send"
-          >
-            Send
-          </Button>
-        </div>
+        <button type="submit">Send</button>
       </form>
     </div>
   );
