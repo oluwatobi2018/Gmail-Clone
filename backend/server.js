@@ -9,12 +9,12 @@ app.use(bodyParser.json());
 
 // Configure SMTP transport for Axigen
 const transporter = nodemailer.createTransport({
-  host: "your-axigen-server.com", // Replace with your Axigen server address
+  host: "smtp.snaarp.com", // Replace with your Axigen server address
   port: 587, // Default SMTP port
   secure: false, // Use true for 465, false for other ports
   auth: {
-    user: "your-email@example.com", // Replace with Axigen email
-    pass: "your-password", // Replace with Axigen password
+    user: "project@snaarp.com", // Replace with Axigen email
+    pass: "Snaarp@123", // Replace with Axigen password
   },
 });
 
@@ -24,7 +24,7 @@ app.post("/api/send", async (req, res) => {
 
   try {
     await transporter.sendMail({
-      from: "your-email@example.com", // Sender address
+      from: "hello@snaarp.com", // Sender address
       to, // List of recipients
       subject, // Subject line
       text, // Plain text body
