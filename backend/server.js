@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 // Configure SMTP transport for Axigen
 const transporter = nodemailer.createTransport({
-  host: "smtp.snaarp.com", // Replace with your Axigen server address
+  host: "example@mail.com", // Replace with your Axigen server address
   port: 587, // Default SMTP port
   secure: false, // Use true for 465, false for other ports
   auth: {
