@@ -1,7 +1,7 @@
 const imap = {
-    user: process.env.IMAP_USER || 'project@snaarp.com',
-    password: process.env.IMAP_PASSWORD || 'Snaarp@123',
-    host: process.env.IMAP_HOST || 'mail.snaarp.com',
+    user: process.env.IMAP_USER || '',
+    password: process.env.IMAP_PASSWORD || '',
+    host: process.env.IMAP_HOST || '',
     port: process.env.IMAP_PORT || 993,
     tls: true,
 };
