@@ -38,5 +38,19 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "A Gmail Clone that you can sign in with your Google Account, compose a new e-mail and send realtime emails to the project.",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oluwatobi2018/Gmail-Clone.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oluwatobi2018/Gmail-Clone/issues"
+  },
+  "homepage": "https://github.com/oluwatobi2018/Gmail-Clone#readme"
 }
