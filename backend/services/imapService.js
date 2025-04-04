@@ -8,9 +8,9 @@ app.use(express.json()); // Parse JSON request bodies
 
 const config = {
   imap: {
-    user: 'project@snaarp.com', // Replace with your Axigen email
-    password: 'Snaarp@123', // Replace with your Axigen password
-    host: 'mail.snaarp.com', // Replace with your Axigen IMAP server address
+    user: '', // Replace with your Axigen email
+    password: '', // Replace with your Axigen password
+    host: '', // Replace with your Axigen IMAP server address
     port: 993, // IMAP Secure port
     tls: true,
     authTimeout: 3000,
