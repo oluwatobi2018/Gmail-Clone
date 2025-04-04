@@ -1,6 +1,5 @@
-// filepath: c:\Users\Oluwatobirc\Documents\Gmail-Clone\src\components\EmailList\EmailList.js
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function EmailList() {
   const [emails, setEmails] = useState([]);
@@ -9,11 +8,11 @@ function EmailList() {
   useEffect(() => {
     const fetchEmails = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/emails');
-        setEmails(response.data);
+        const response = await axios.get("http://localhost:5000/api/emails"); // Fetch emails from backend
+        setEmails(response.data); // Set emails to state
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching emails:', error);
+        console.error("Error fetching emails:", error);
         setLoading(false);
       }
     };
